@@ -39,14 +39,14 @@
                          <div class="broder">
 
                               <h4> <strong>EMAIL</strong> </h4>
-                              <input type="email" id="email" class="control" placeholder="name@gmail.com">
+                              <input type="email" id="email" class="control" placeholder="name@gmail.com" onclick="setbordercolor()">
 
                          </div>
 
                          <div class="broder">
 
                               <h5> <strong>PASSWORD</strong> </h5>
-                              <input type="password" id="password" class="control" placeholder="Create Password">
+                              <input type="password" id="password" class="control" placeholder="Create Password" onclick="setbordercolor()">
                               <p>Between 8 and 72 characters</p>
                               <br>
                               
@@ -55,12 +55,14 @@
                     </form>
                     
                     <div class="img">
-                        <img class="google_img" src="./components/icons/download.jfif" alt="">
-                         <p class="google_text"><strong>Continue with Google</strong></p>
+                        <!-- <img class="google_img" src="./components/icons/download.jfif" alt="">
+                         <p class="google_text"><strong>Continue with Google</strong></p> -->
+                         <button id="oauth"> <p> <img class="google_img" src="./components/icons/download.jfif" alt="" >Continue with Google</p></button>
                       </div>
                       <div class="img">
-                        <img class="google_img" src="./components/icons/facebook.jpg" alt="">
-                         <p class="google_text"><strong>Continue with Facebook</strong></p>
+                         <button id="facebookoauth"> <p> <img class="google_img" src="./components/icons/facebook.jpg" alt="" >Continue with Facebook</p></button>
+                        <!-- <img class="google_img" src="./components/icons/facebook.jpg" alt="">
+                         <p class="google_text"><strong>Continue with Facebook</strong></p> -->
                       </div>
                       <div class="flex">
                            <p>Already on Coursera?</p>
@@ -94,30 +96,10 @@ function removebordercolor(){
      
 }
 document.querySelector(".join_btn").addEventListener("click",signUp);
-// var userData = JSON.parse(localStorage.getItem("database")) || [];
-// function signUp(event){
-//     event.preventDefault();
-//     var name = document.getElementById("name").value;
-//     var email = document.getElementById("email").value;
-//     var password = document.querySelector("#password").value;
+document.querySelector("#facebookoauth").addEventListener("click",facebookOauth);
+     let SignUpurl=`http://localhost:4000/register`
+     let facebookurl=`http://localhost:4000/auth/facebook`
 
-    
-
-//     var userDetails = {
-//         userName: name,
-//         userEmail: email,
-//         userPassword: password,
-//     };
-//     userData.push(userDetails);
-//     console.log(userData);
-
-//     localStorage.setItem("database",JSON.stringify(userData));
-//     alert("Sign Up Successfully")
-//     window.location.href = "Login.html"
-// }
-
-// const form=document.getElementById("reg-form").addEventListener("submit", register)
-    let url=`http://localhost:4000/register`
     async function signUp(event){
         event.preventDefault()
         let diverror= document.getElementById("error")
@@ -131,7 +113,7 @@ document.querySelector(".join_btn").addEventListener("click",signUp);
         const password=document.getElementById("password").value
        
 
-       const result= await fetch(url,{
+       const result= await fetch(SignUpurl,{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
@@ -191,22 +173,23 @@ document.querySelector(".join_btn").addEventListener("click",signUp);
        
     }
  
+
+   async function facebookOauth(event){
+     event.preventDefault()
+     try {
+      let res= await fetch(facebookurl)
+      console.log(res.url)
+      window.location.href=res.url
+     } catch (error) {
+          console.log(error)
+     }
+     
+
+   }
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 <!-- 
     <script type="module">

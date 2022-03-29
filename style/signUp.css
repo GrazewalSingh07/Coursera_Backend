@@ -100,16 +100,19 @@ body {
 .google_img {
   /* border: 1px solid blue; */
   height: 21px;
-  margin: 10px 30px;
+   
   /* width: 20px; */
 }
-.google_text {
-  /* border: 1px solid teal; */
-  font-size: 16px;
-  /* margin: 10px 10px; */
-  padding: 10px 30px 10px 0px;
-  width: 90%;
+#facebookoauth{
+  width:200%
 }
+/* .google_text { */
+  /* border: 1px solid teal; */
+  /* font-size: 16px; */
+  /* margin: 10px 10px; */
+  /* padding: 10px 30px 10px 0px; */
+  /* width: 90%; */
+
 .flex {
   display: flex;
   justify-content: center;
