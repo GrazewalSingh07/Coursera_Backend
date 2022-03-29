@@ -8,9 +8,9 @@
      <link rel="icon" href="./components/icons/image.png">
      <link rel="stylesheet" href="./style/signUp.css">
 </head>
-<body>
-     <div id="main_div">
-          <div id="block">
+<body  >
+     <div id="main_div" >
+          <div id="block" >
                <div id="flex">
                     <div id="text">
                          <h1>Sign Up</h1>
@@ -18,17 +18,21 @@
                               <p>Learn on your own time from top</p>
                               <p>universities and businesses.</p>
                          </div>
+                         <!-- <div id="error">
+                              <p>fbhgnjkhfjgkjhj</p>
+                         </div> -->
                     </div>
                     <div>
                          <a href="./index.html"><svg class="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg></a> 
                     </div>
                </div>
                <div class="form_div">
+                  
                     <form>
                          <div class="broder">
 
                               <h4> <strong>FULL NAME</strong></h4>
-                              <input type="text" id="name" class="control" placeholder="Enter your full name">
+                              <input type="text" id="name" class="control" placeholder="Enter your full name" onclick="setbordercolor()">
 
                          </div>
 
@@ -41,7 +45,7 @@
 
                          <div class="broder">
 
-                              <h5> <strong>Password</strong> </h5>
+                              <h5> <strong>PASSWORD</strong> </h5>
                               <input type="password" id="password" class="control" placeholder="Create Password">
                               <p>Between 8 and 72 characters</p>
                               <br>
@@ -77,30 +81,116 @@
 
 <script>
 
-
+function setbordercolor(){
+     
+          document.getElementById("name").style.border= "1px solid blue"
+}
+ 
+function removebordercolor(){
+     document.querySelector(":not(input)").style.border="1px solid gray"
+     //  if(color==="1px solid blue"){
+     //      document.querySelector("input").style.border
+     //  }
+     
+}
 document.querySelector(".join_btn").addEventListener("click",signUp);
-var userData = JSON.parse(localStorage.getItem("database")) || [];
-function signUp(event){
-    event.preventDefault();
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var password = document.querySelector("#password").value;
+// var userData = JSON.parse(localStorage.getItem("database")) || [];
+// function signUp(event){
+//     event.preventDefault();
+//     var name = document.getElementById("name").value;
+//     var email = document.getElementById("email").value;
+//     var password = document.querySelector("#password").value;
 
     
 
-    var userDetails = {
-        userName: name,
-        userEmail: email,
-        userPassword: password,
-    };
-    userData.push(userDetails);
-    console.log(userData);
+//     var userDetails = {
+//         userName: name,
+//         userEmail: email,
+//         userPassword: password,
+//     };
+//     userData.push(userDetails);
+//     console.log(userData);
 
-    localStorage.setItem("database",JSON.stringify(userData));
-    alert("Sign Up Successfully")
-    window.location.href = "Login.html"
-}
+//     localStorage.setItem("database",JSON.stringify(userData));
+//     alert("Sign Up Successfully")
+//     window.location.href = "Login.html"
+// }
 
+// const form=document.getElementById("reg-form").addEventListener("submit", register)
+    let url=`http://localhost:4000/register`
+    async function signUp(event){
+        event.preventDefault()
+        let diverror= document.getElementById("error")
+        if(diverror){
+          diverror= document.getElementById("error").remove()
+        }
+      
+        try {
+        const username=document.getElementById("name").value
+        const email=document.getElementById("email").value
+        const password=document.getElementById("password").value
+       
+
+       const result= await fetch(url,{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:
+                JSON.stringify({
+                    username,
+                    email,
+                    password
+            })
+        }).then((res)=>{
+            return res.json()
+        })
+     //    console.log(result)
+       
+      if(result.error){
+          console.log({res:result.error})
+        
+        var error=  document.createElement("div") 
+        error.setAttribute("id","error")
+        var p=document.createElement("p")
+       
+         
+        console.log(result.error[0].param)
+         for(let i=0;i<result.error.length;i++){
+          if(result.error[i].param=="username"){
+                    p.textContent=("Please enter username")
+                   
+               }
+               if(result.error[i].param=="email"){
+                    p.textContent=("Invalid email. Please enter email as name@email.com")
+                   
+               }
+               if(result.error[i].param=="password"){
+                    p.textContent=("Password must contain between 8 and 72 characters.")
+                    break;
+               }
+         }
+         if(result.error.length>2){
+          p.textContent=("Full name is required.Invalid email. Please enter email as name@email.com. Password must contain between 8 and 72 characters.")
+         }
+       
+        
+        error.append(p)
+        document.getElementById("text").append(error)
+        
+        
+          
+      }
+      else{
+        localStorage.setItem("Course-era Token",JSON.stringify(result.token))
+          window.location.href="login.html"
+      }
+        } catch (error) {
+             console.log({error:error})
+        }
+       
+    }
+ 
 </script>
 
 
