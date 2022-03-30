@@ -1,7 +1,7 @@
 const express=require("express");
 const router= express.Router();
 const User=require("../model/user.model")
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 require("dotenv").config()
 const {body, validationResult}=require("express-validator")
 
@@ -11,7 +11,8 @@ const newToken=(user)=>{
 router.post("/",body("username")
 .not().isEmpty().bail().isString().bail().withMessage("Please enter username").bail(),
 body("email").not().isEmpty().bail().isEmail().withMessage("Please enter a valid email address").bail().custom(async(value)=>{
-    let user=await User.find({email:value}).lean().exec()
+    let user=await User.find({email:value}).lean().exec() 
+
     if(user===[]){
         console.log(user)
         throw new Error("Email already exists")
@@ -25,40 +26,43 @@ body("email").not().isEmpty().bail().isEmail().withMessage("Please enter a valid
          throw new Error("Password must be strong");
     }
          return true;
-}).bail(),async(req,res)=>{
+}).bail(), async(req,res)=>{
     try {
 
-        // const errors = validationResult(req);
-        // if (errors.isEmpty()) {
-            
-        // }
-        // const extractedErrors = []
-        // errors.array({ onlyFirstError: true }).map(err => extractedErrors.push({ [err.param]: err.msg }));
-      
-        // return res.status(422).json({
-        //   errors: extractedErrors,
-        // });
         const errors=validationResult(req)
         if(!errors.isEmpty()){
             
             return res.status(400).json({error:errors.array()})
      
-    }
-    const user= await User.create(req.body)
-            const token=newToken(user)
-           return  res.status(200).send({token:token})
+        }
+        let user= await User.findOne({email:req.body.email}).lean().exec()
+        if(user){
+            return res.status(400).send({message:"Email or password incorrect"})
+        }
+        // create user for new email
+        user= await User.create(req.body)
+        console.log(user)
+        // const token = newToken(user)
+        //      console.log(token)
+            
+        return res.status(200).send(user)
+        // const user= await User.create(req.body)
+      
+        //     const token=newToken(user)
+       
+        //    return  res.status(200).send({user,token})
     } catch (error) {
         if(error.code===11000){
            return res.status(500).send("Register successful please login ")
         }
-       throw new Error("")
+        return res.status(400).send(error)
         
     }
 })
 router.get("/",async(req,res)=>{
     try {
         const user= await User.find().lean().exec()
-        res.status(200).send(user)
+      return  res.status(200).send(user)
     } catch (error) {
         res.status(500).send({error:error.message})
     }

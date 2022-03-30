@@ -33,14 +33,14 @@
 
                          <div class="broder">
 
-                              <h5> <strong>Password</strong> </h5>
+                              <h5> <strong>PASSWORD</strong> </h5>
                               <input type="password" id="password" class="control" placeholder="Create Password">
                               <br>
                               
                               <button class="btn">Login</button>
                          </div>
                     </form>
-                    
+                   <button><p>Forgot Password</p></button> 
                     <div class="img">
                           <img class="google_img" src="./components/icons/download.jfif" alt="">
                          <p class="google_text"><strong>Continue with Google</strong></p>
@@ -53,45 +53,94 @@
                         <img class="google_img" src="./components/icons/apple.jpg" alt="">
                          <p class="google_text"><strong>Continue with Apple</strong></p>
                       </div>
+                      <div id="newSignup">
+                         <p>New to Coursera?</p>
+                         <a href="signup.html">Sign up</a>
+                      </div>
+                     
+                      <hr>
+                      <a href="signup.html">Log in with your organization</a>
                     <p class="para">Having trouble logging in? <a href="">Learner help center</a> </p>
                     <p class="para">This site is protected by reCAPTCHA Enterprise and the Google <a href="">Privacy Policy</a>  and <a href="">Terms of Service</a>  apply.</p>
                     </div>
                   </div>
                </div>
-          </div>
-     </div>
+               <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <p>Some text. Some text. Some text.</p>
+                        <p>Some text. Some text. Some text.</p>
+                      </div>
+                    </div>
+           </div>
 </body>
 </html>
 
 <script>
          document.querySelector(".btn").addEventListener("click", signIn);
-    var regdUsers = JSON.parse(localStorage.getItem("database"));
-    function signIn(event){
-        event.preventDefault();
+//     var regdUsers = JSON.parse(localStorage.getItem("database"));
+//     function signIn(event){
+//         event.preventDefault();
 
-        var email = document.querySelector("#email").value;
-        var password = document.querySelector("#password").value;
+//         var email = document.querySelector("#email").value;
+//         var password = document.querySelector("#password").value;
 
         
 
-        flag = false;
-        for(var i = 0; i < regdUsers.length; i++){
-            if(regdUsers[i].userEmail == email && regdUsers[i].userPassword == password){
-                window.location.href = "hi.html";
-                console.log(email);
-                flag = true;
-                localStorage.setItem("User_name",regdUsers[i].userName);
-                break;
-            } 
-        }
-        if(flag){
-            alert("Successfully Login");
-            let flag_for_profile = localStorage.setItem("flag_for_profile",true);
-                window.location.href = "./index.html";
-        }else{
-            alert("Your Email or Password is Invalid");
-        }
+//         flag = false;
+//         for(var i = 0; i < regdUsers.length; i++){
+//             if(regdUsers[i].userEmail == email && regdUsers[i].userPassword == password){
+//                 window.location.href = "hi.html";
+//                 console.log(email);
+//                 flag = true;
+//                 localStorage.setItem("User_name",regdUsers[i].userName);
+//                 break;
+//             } 
+//         }
+//         if(flag){
+//             alert("Successfully Login");
+//             let flag_for_profile = localStorage.setItem("flag_for_profile",true);
+//                 window.location.href = "./index.html";
+//         }else{
+//             alert("Your Email or Password is Invalid");
+//         }
+//     }
+let url=`http://localhost:4000/login`
+
+async function signIn(event){
+    event.preventDefault();
+    try {
+     const email=document.getElementById("email").value
+   const password= document.getElementById("password").value
+    const result= await fetch(url,{
+       method:"POST",
+       headers:{
+           'Content-Type':'application/json'
+       },
+       body:
+           JSON.stringify({
+               email,
+               password
+       })
+   }).then((res)=>{
+       return res.json()
+   })
+//    console.log(result)
+   if(result.error){
+     console.log(result.error)
+ }
+ else{
+   localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
+   localStorage.setItem("CurrentUser",JSON.stringify(result.user))
+   window.location.href="index.html"
+      
+ }
+    } catch (error) {
+         console.log(error)
     }
+    
+}
 </script>
 
 
