@@ -16,20 +16,20 @@ router.get("/", async(req,res)=>{
 router.patch("/:id",authenticate,single("profilepic"), async(req,res)=>{
     try {
         
-        // console.log(req.file)
+        console.log(req.body)
         if(req.file.path){
             //  var newprofile= req.file.path
                let finduser=await User.findOne({_id:req.params.id}).lean().exec();
-               finduser.profile_Pic=null
+               finduser.profilepic=null
               let user= await User.findByIdAndUpdate(
                 req.params.id,
                  {  
-                    //   fullname:req.body.fullname,
-                     profilepic:req.file.path
-                    //  address:req.body.address,
-                    //  gender:req.body.gender,
+                     fullname:req.body.fullname,
+                     profilepic:req.file.path,
+                     address:req.body.address,
+                     gender:req.body.gender,
                     //  birthday:req.body.birthday,
-                    //  phone:req.body.phone
+                     phone:req.body.phone
 
                  }
                 ,{new:true}).lean().exec()
@@ -38,15 +38,17 @@ router.patch("/:id",authenticate,single("profilepic"), async(req,res)=>{
 
  
             else{
-            console.log(req.body)
-               const user= await User.findByIdAndUpdate(
-                    req.params.id,
-                     req.body
-                    ,{new:true}).lean().exec()
-                   
-                    return res.status(200).send(user)
+                console.log(req.body)
+                const user= await User.findByIdAndUpdate(
+                     req.params.id,
+                      req.body
+                     ,{new:true}).lean().exec()
+                    
+                     return res.status(200).send(user)
+            }
+           
             
-               }
+               
     } catch (error) {
         res.status(400).send(error)
     }
