@@ -124,7 +124,9 @@ async function signIn(event){
      console.log(result.error)
  }
  else{
-   localStorage.setItem("Course-era Token",JSON.stringify(result.token))
+   localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
+   localStorage.setItem("CurrentUser",JSON.stringify(result.user))
+   window.location.href="index.html"
       
  }
     } catch (error) {

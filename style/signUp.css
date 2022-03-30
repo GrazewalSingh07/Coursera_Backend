@@ -3,12 +3,13 @@
 * {
   margin: 0px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 #main_div {
   border: 1px solid #cbdef8;
   height: 930px;
   background-color: #cbdef8;
-  
+ /* opacity: .4; */
 }
 #block {
   /* border: 1px solid black; */
