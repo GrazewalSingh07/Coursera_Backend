@@ -102,6 +102,7 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
 
     async function signUp(event){
         event.preventDefault()
+     //    console.log("hi")
         let diverror= document.getElementById("error")
         if(diverror){
           diverror= document.getElementById("error").remove()
@@ -112,7 +113,7 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
         const email=document.getElementById("email").value
         const password=document.getElementById("password").value
        
-
+      console.log(username,email,password)
        const result= await fetch(SignUpurl,{
             method:"POST",
             headers:{
@@ -127,7 +128,7 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
         }).then((res)=>{
             return res.json()
         })
-     //    console.log(result)
+        console.log(result)
        
       if(result.error){
           console.log({res:result.error})

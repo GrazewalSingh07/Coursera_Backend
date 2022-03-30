@@ -1,16 +1,12 @@
-html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-}
+ 
+
 * {
   margin: 0px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 #main_div {
   border: 1px solid #cbdef8;
-  /* height: 930px; */
+  height: 930px;
   background-color: #cbdef8;
   
 }

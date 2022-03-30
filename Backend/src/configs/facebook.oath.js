@@ -33,10 +33,21 @@ passport.use(new FacebookStrategy({
         })
     }
    
-    //   console.log(profile.displayName)
-      console.log(user)
+    //   console.log(user)
     return cb(null,user);
   
 }
 ));
 module.exports= passport
+
+
+
+
+
+
+
+
+
+
+
+
