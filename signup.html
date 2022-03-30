@@ -98,7 +98,7 @@ function removebordercolor(){
 document.querySelector(".join_btn").addEventListener("click",signUp);
 document.querySelector("#facebookoauth").addEventListener("click",facebookOauth);
      let SignUpurl=`http://localhost:4000/register`
-     let facebookurl=`http://localhost:4000/auth/facebook`
+     let facebookurl=`http://localhost:4000/auth/facebook/callback`
 
     async function signUp(event){
         event.preventDefault()
@@ -174,8 +174,8 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
     }
  
 
-   async function facebookOauth(event){
-     event.preventDefault()
+   async function facebookOauth(){
+      
      try {
       let res= await fetch(facebookurl)
       console.log(res.url)
