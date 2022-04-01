@@ -117,7 +117,8 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
        const result= await fetch(SignUpurl,{
             method:"POST",
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                
             },
             body:
                 JSON.stringify({
@@ -172,20 +173,23 @@ document.querySelector("#facebookoauth").addEventListener("click",facebookOauth)
         }
        
     }
+  
  
-
-   async function facebookOauth(){
-      
+    async function facebookOauth(event){
+     event.preventDefault()
      try {
       let res= await fetch(facebookurl)
-      console.log(res.url)
       window.location.href=res.url
+
+
+      console.log(data)
      } catch (error) {
           console.log(error)
      }
      
 
    }
+ 
 </script>
 
 

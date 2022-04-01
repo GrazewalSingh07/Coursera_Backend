@@ -39,18 +39,13 @@ body("email").not().isEmpty().bail().isEmail().withMessage("Please enter a valid
         if(user){
             return res.status(400).send({message:"Email or password incorrect"})
         }
-        // create user for new email
+       
         user= await User.create(req.body)
         console.log(user)
-        // const token = newToken(user)
-        //      console.log(token)
+       
             
         return res.status(200).send(user)
-        // const user= await User.create(req.body)
-      
-        //     const token=newToken(user)
        
-        //    return  res.status(200).send({user,token})
     } catch (error) {
         if(error.code===11000){
            return res.status(500).send("Register successful please login ")
