@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
-module.exports = () => {
-    return mongoose.connect("mongodb://127.0.0.1:27017/b1");
+const connectdb = () => {
+  return mongoose.connect(
+    "mongodb+srv://NayanIngale:nayan123@cluster0.yyh15.mongodb.net/courseraData"
+  );
+  
 };
+module.exports = connectdb;
