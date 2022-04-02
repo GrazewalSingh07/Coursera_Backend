@@ -88,7 +88,18 @@ const navbar = ()=>{
     <div id="user_div_data">
                 <img src="./components/icons/profilepage.png" alt="">
                 <div id="parent_user"><p id="user_name"></p>
-                </div>
+
+                <select name="links" id="s_tag" size="1" onchange="window.location.href=this.value;">
+          <option value="" class="select_1"></option>
+          <option value="" class="select_1">My Courses</option>
+          <option value="profile.html" class="select_1">Profile</option>
+          <option value="" class="select_1">Setting</option>
+          <option value="" class="select_1">Updates</option>
+          <option value="" class="select_1">Accomplishment</option>
+          <option value="" class="select_1">Help center</option>
+          <option value="login.html" class="select_1">Logout</option>
+
+                </div>     
 </div>
 <div id="navbar_goals_subject">
     <div class="navbar_goal_header">
