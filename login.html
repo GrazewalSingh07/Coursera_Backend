@@ -35,6 +35,7 @@
 
                               <h5> <strong>PASSWORD</strong> </h5>
                               <input type="password" id="password" class="control" placeholder="Create Password">
+                              <a href="./forget pasword/forget_pass.html" class="forget_pass" >Forget Password?</a>
                               <br>
                               
                               <button class="btn">Login</button>
@@ -54,14 +55,16 @@
                          <p class="google_text"><strong>Continue with Apple</strong></p>
                       </div>
                       <div id="newSignup">
-                         <p>New to Coursera?</p>
-                         <a href="signup.html">Sign up</a>
+                         <p>New to Coursera?  <a href="signup.html">Sign up</a> </p>
                       </div>
                      
-                      <hr>
-                      <a href="signup.html">Log in with your organization</a>
-                    <p class="para">Having trouble logging in? <a href="">Learner help center</a> </p>
-                    <p class="para">This site is protected by reCAPTCHA Enterprise and the Google <a href="">Privacy Policy</a>  and <a href="">Terms of Service</a>  apply.</p>
+                      <hr class="line">
+                      <div id="link_div">
+                         <a class="link" href="signup.html">Log in with your organization</a>
+                         <p class="para">Having trouble logging in? <a href="">Learner help center</a> </p>
+                         <p class="para">This site is protected by reCAPTCHA Enterprise and the Google <a href="">Privacy Policy</a>  and <a href="">Terms of Service</a>  apply.</p>
+                      </div>
+                      
                     </div>
                   </div>
                </div>
@@ -80,6 +83,13 @@ let url=`http://localhost:5000/login`
 
 async function signIn(event){
     event.preventDefault();
+
+    let diverror= document.getElementById("error")
+        if(diverror){
+          diverror= document.getElementById("error").remove()
+          document.getElementById("block").style.height= "800px"
+     }
+
     try {
      const email=document.getElementById("email").value
    const password= document.getElementById("password").value
@@ -95,13 +105,40 @@ async function signIn(event){
        })
    }).then((res)=>{
        return res.json()
-   })
-//    console.log(result)
+   });
+
    if(result.error){
-     console.log(result.error)
- }
+          console.log({res:result.error})
+        
+        var error=  document.createElement("div") 
+        error.setAttribute("id","error")
+        document.getElementById("block").style.height= "900px"
+        var p=document.createElement("p")
+        console.log(result.error[0].param)
+         for(let i=0;i<result.error.length;i++){
+           
+               if(result.error[i].param=="email"){
+                    p.textContent=("Invalid email. Please enter email as name@email.com")
+                   
+               }
+               if(result.error[i].param=="password"){
+                    p.textContent=("Password must contain between 8 and 72 characters.")
+                    break;
+               }
+         }
+         if(result.error.length>1){
+          p.textContent=("Full name is required.Invalid email. Please enter email as name@email.com. Password must contain between 8 and 72 characters.")
+         } 
+        error.append(p)
+        document.getElementById("text").append(error)  
+     }
+     //  else{
+     //      window.location.href="login.html"
+     //  }
+     
  else{
-   localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
+     localStorage.setItem("userID",JSON.stringify(result.user._id))
+   localStorage.setItem("Course-eraToken",JSON.stringify(`Bearer ${result.token}`))
    localStorage.setItem("CurrentUser",JSON.stringify(result.user))
    window.location.href="index.html"
       

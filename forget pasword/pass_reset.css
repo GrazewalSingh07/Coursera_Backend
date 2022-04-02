@@ -28,13 +28,25 @@
          font-size: 17px;
          color: gray;
     }
+    #error{
+     height: 10%;
+     width: 70%;
+     padding: 2%;
+  margin: auto;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  background-color: #FBE6E6
+}
+#error > p {
+     text-align: center;
+}
     #email_div > h4{
          /* border: 1px solid black; */
          font-size: 15px;
          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
          padding-left: 75px;
     }
-    #email_ip{
+    .email_ip{
          border: 1px solid gray;
          width: 350px ;
          margin: 15px 0px 0px 75px;

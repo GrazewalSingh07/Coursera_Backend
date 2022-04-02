@@ -14,6 +14,18 @@
          height: 20px;
          padding: 10px 0px 0px 465px;
     }
+    #error{
+     height: 10%;
+     width: 55%;
+     padding: 2%;
+  margin: auto;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  background-color: #FBE6E6
+}
+#error > p {
+     text-align: center;
+}
     #text > h1{
          /* border: 1px solid red; */
          text-align: center;

@@ -20,14 +20,7 @@ userSchema.pre("save" ,function(next){
     return next()
 })
  
-userSchema.pre('findOneAndUpdate', async function () {
-    if(this.password){
-        this._update.password = await bcrypt.hash(this._update.password, 10)
-    }
-    else{
-        return true
-    }
-  })
+
 
 userSchema.methods.checkPassword=function(password){
     return bcrypt.compareSync(password, this.password)

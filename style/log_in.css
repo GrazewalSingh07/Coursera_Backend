@@ -29,6 +29,22 @@
   display: flex;
   margin: 0px 20px 0 0;
 }
+.forget_pass{
+  text-decoration: none;
+  font-size: 12px;
+  margin: 15px 0px 0px 0px;
+  background-color: white;
+  color: #0056d2;
+  border: 0px;
+}
+#error{
+  height: auto;
+  padding: 5%;
+  margin: 5%;
+  margin-left: 65px;
+  background-color: #FBE6E6
+  
+}
 #text {
   /* border: 1px solid green; */
   width: 100%;
@@ -101,9 +117,30 @@
   margin: 20px 0px 20px 0;
   text-align: center;
 }
-.para {
+#link_div{
+  /* border: 1px solid green; */
+  text-align: center;
+  padding-top: 20px;
+}
+.line{
+  margin-top: 20px;
+}
+#newSignup > p{
+  margin: auto;
+}
+#newSignup > p > a{
+  color: #0056d2;
+  text-decoration: none;
+}
+.link{
+  color:#0056d2;
+  text-decoration: none;
+  
+}
+#link_div > .para {
   color: gray;
   font-size: 12px;
+  margin-top: 20px;
 }
 .para > a {
   color: gray;
