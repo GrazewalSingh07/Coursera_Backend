@@ -162,6 +162,7 @@ async function signIn(event){
      //  }
      
  else{
+   localStorage.setItem("userID",JSON.stringify("result.user._id"))
    localStorage.setItem("Course-eraToken",JSON.stringify(`Bearer ${result.token}`))
    localStorage.setItem("CurrentUser",JSON.stringify(result.user))
    window.location.href="index.html"
