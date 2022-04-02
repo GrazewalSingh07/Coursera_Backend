@@ -1,7 +1,12 @@
 
-    let name_of_user = localStorage.getItem("User_name");
-    let user_Name = document.querySelector("#user_name");
-    user_Name.innerText = name_of_user;
+    // if(token){
+    //     let user= JSON.parse(localStorage.getItem("CurrentUser"))
+    //     console.log(token, user)
+    // }
+  
+    // let name_of_user = localStorage.getItem("User_name");
+    // let user_Name = document.querySelector("#user_name");
+    // user_Name.innerText = name_of_user;
 
 let input_of_navbar = document.querySelector("#input_of_navbar");
 let input_debouncing = document.querySelector("#input_debouncing");

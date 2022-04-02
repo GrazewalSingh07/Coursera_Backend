@@ -14,6 +14,8 @@
    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;900&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="./style/slidestyle.css">
 
+   <link rel="stylesheet" href="navbar.css">
+
 <body>
     <div id="navbar_parent"></div>
     <div id="main">
@@ -454,13 +456,15 @@
             window.location.reload();
         })
 
-
-
-        let flag_for_profile = localStorage.getItem("flag_for_profile");
-        console.log(flag_for_profile);
-        if(flag_for_profile)
-        {
-
+        let token= JSON.parse(localStorage.getItem("Course-eraToken"))
+        if(token){
+        let user= JSON.parse(localStorage.getItem("CurrentUser"))
+        let name_of_user = user.username;
+        let user_Name = document.querySelector("#user_name");
+        user_Name.innerText = name_of_user;
+        console.log(token, user)
+      }
+        if(token){
             let hide_me = document.querySelector("#user_div_data");
             hide_me.style.display = "block";
 
@@ -472,16 +476,24 @@
 
             let show_me_also = document.querySelector("#log_in_text");
             show_me_also.style.display = "none";
-
-            localStorage.setItem("flag_for_profile",false);
         }
+        else{
+            let hide_me = document.querySelector("#user_div_data");
+            hide_me.style.display = "none";
 
+            let hide_me_also = document.querySelector("#bell_icon");
+            hide_me_also.style.display =  "none";
 
+            let show_me = document.querySelector("#join_for_free");
+            show_me.style.display ="block";
 
+            let show_me_also = document.querySelector("#log_in_text");
+            show_me_also.style.display ="block";
+        }
+       
+       
+   
 
-    let name_of_user = localStorage.getItem("User_name");
-    let user_Name = document.querySelector("#user_name");
-    user_Name.innerText = name_of_user;
 
 let input_of_navbar = document.querySelector("#input_of_navbar");
 let input_debouncing = document.querySelector("#input_debouncing");
@@ -946,5 +958,5 @@ querySearch.addEventListener("click",()=>{
     window.location.href="./UpdatedResult.html";
 })
 
- 
+
 </script>
