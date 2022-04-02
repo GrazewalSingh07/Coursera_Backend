@@ -1,5 +1,5 @@
-const navbar = ()=>{
-    return `
+const navbar = () => {
+  return `
     <div id="choti_navbar">
     <div><i class="iconify" data-icon="clarity:menu-line" style="color: #363b42;" data-width="24"></i></div>
     <a href="index.html"><img src="./components/icons/download.svg" alt=""></a>
@@ -88,18 +88,16 @@ const navbar = ()=>{
     <div id="user_div_data">
                 <img src="./components/icons/profilepage.png" alt="">
                 <div id="parent_user"><p id="user_name"></p>
-
                 <select name="links" id="s_tag" size="1" onchange="window.location.href=this.value;">
-          <option value="" class="select_1"></option>
-          <option value="" class="select_1">My Courses</option>
-          <option value="profile.html" class="select_1">Profile</option>
-          <option value="" class="select_1">Setting</option>
-          <option value="" class="select_1">Updates</option>
-          <option value="" class="select_1">Accomplishment</option>
-          <option value="" class="select_1">Help center</option>
-          <option value="login.html" class="select_1">Logout</option>
-
-                </div>     
+          <option value=""></option>
+          <option value="">My Courses</option>
+          <option value="profile.html">Profile</option>
+          <option value="">Setting</option>
+          <option value="">Updates</option>
+          <option value="">Accomplishment</option>
+          <option value="">Help center</option>
+          <option value="login.html">Logout</option></select>
+                </div>
 </div>
 <div id="navbar_goals_subject">
     <div class="navbar_goal_header">
@@ -2368,7 +2366,6 @@ const navbar = ()=>{
         </div>
         </div>
 </div>`;
-}
-
+};
 
 export default navbar;
