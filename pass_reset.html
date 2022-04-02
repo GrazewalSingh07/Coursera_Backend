@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Coursera | Forget Password</title>
+     <link rel="stylesheet" href="pass_reset.css">
+</head>
+<body>
+     <div id="body_div">
+          <div id="cancle_btn">
+               <a href="login.html"><svg class="cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg></a> 
+          </div>
+          <div id="text">
+               <h1>Forgot password</h1>
+               <p>Please Enter New Password</p>
+          </div>
+          <div id="email_div">
+               <h4>Enter Password</h4>
+          </div>
+          <div>
+               <form>
+                    <input type="text" id="password"class="email_ip" placeholder="Enter password here">
+                         <div class="email_div">
+                              <h4>Confirm Password</h4>
+                         </div>
+                         <input type="text"id="Confpassword" class="email_ip" placeholder="Confirm password here">
+                    <button id="submit_btn">Save Password</button>
+               </form>
+          </div>
+          <hr id="line_hr">
+          <div class="email_div">
+               <button>Email me a login link</button>
+          </div>
+          <div id="back">
+               <p>Back to <a id="log_in" href="login.html">Log in</a> </p>
+          </div>
+     </div>
+</body>
+</html>
+<script>
+      document.querySelector("#submit_btn").addEventListener("click",savePassword);
+      JSON.parse(localStorage.getItem("userID"))
+     //  console.log( JSON.parse(localStorage.getItem("userID")))
+    
+    
+     async  function savePassword(event){
+     event.preventDefault()
+     let url=`http://localhost:5000/reset-password/${JSON.parse(localStorage.getItem("userID"))}`
+      console.log(url)
+      let diverror= document.getElementById("error")
+        if(diverror){
+          diverror= document.getElementById("error").remove()
+          document.getElementById("body_div").style.height= "550px"
+        }
+        let firstpassword= document.getElementById("password").value
+        let password= document.getElementById("Confpassword").value
+
+
+if(firstpassword==""||password==""){
+          var error=  document.createElement("div") 
+        error.setAttribute("id","error")
+        document.getElementById("body_div").style.height= "700px"
+        var p=document.createElement("p")
+     //    console.log(result.error[0].msg)
+        p.textContent="There has to be something in the password field"
+        
+        error.append(p)
+        document.getElementById("text").append(error)
+     }
+else if(firstpassword==password &&firstpassword!=""&&password!=""){
+     try {
+         const result= await fetch(url,{
+            method:"PATCH",
+            headers:{
+                'Content-Type':'application/json',
+            },
+            body:
+                JSON.stringify({  
+                   password 
+            })
+        }).then((res)=>{
+            return res.json()
+        })
+        console.log(result)
+
+        if(result.error){
+          console.log(error)
+        
+        var error=  document.createElement("div") 
+        error.setAttribute("id","error")
+        document.getElementById("body_div").style.height= "600px"
+        var p=document.createElement("p")
+        console.log(result.error[0].msg)
+     //    p.textContent=result.error[0].msg
+        
+        error.append(p)
+        document.getElementById("text").append(error)
+      }
+      else{
+          localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
+           localStorage.setItem("CurrentUser",JSON.stringify(result.user))
+           window.location.href="index.html"
+      }    
+        } catch (error) {
+             console.log(error)
+        }
+     }
+     else{
+          var error=  document.createElement("div") 
+          error.setAttribute("id","error")
+          document.getElementById("body_div").style.height= "700px"
+          var p=document.createElement("p")
+          p.textContent="Entered password must be same"
+          
+          error.append(p)
+          document.getElementById("text").append(error)
+     }
+     
+}
+  
+</script>

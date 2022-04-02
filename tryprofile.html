@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form class="imgupload" action="/edit-profile" id="file" accept="image/png, image/jpeg" method="patch" enctype="multipart/form-data" >
+        <div class="flex">
+            <h4>Full Name</h4>
+            <input type="text" id="name">
+       </div>
+       <div class="flex">
+            <h4>Profile Photo</h4>
+        <!-- <button type="file" class="btn">Upload Photo</button> -->
+        <input type="file" value="Upload Photo"class="btn" ></input>
+        <p>Maximum size of 1MB. JPG, GIF, or PNG.</p>
+        
+        <input class="btn2" type="submit" id="SaveProfile"></input>
+   </form>
+</body>
+</html>
+<script>
+    // let url=`http://localhost:5000/edit-profile/${JSON.parse(localStorage.getItem("userID"))}`
+    // let action=document.getElementById("file").setAttribute("action", url)
+    // console.log(action)
+    document.getElementById("SaveProfile").addEventListener("click", save)
+     let url=`http://localhost:5000/edit-profile/${JSON.parse(localStorage.getItem("userID"))}`
+     let token= JSON.parse(localStorage.getItem("Course-eraToken"))
+     async function save(event){
+          event.preventDefault()
+          let fullname=document.getElementById("name").value
+          const result= await fetch(url,{
+            method:"PATCH",
+            headers:{
+                'Content-Type':'application/json',
+                "enctype":"multipart/form-data",
+                "Authorization":token
+                
+            },
+            body:
+                JSON.stringify({
+                   fullname
+            })
+        }).then((res)=>{
+            return res.json()
+        })
+        console.log(result)
+          
+}
+</script>

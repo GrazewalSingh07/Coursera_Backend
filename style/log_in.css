@@ -10,12 +10,19 @@
 #block {
   /* border: 1px solid black; */
   width: 25%;
-  height: 90%;
+  height: 800px;
   margin: auto;
   margin-top: 2%;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
+}
+#error{
+   
+  height: auto;
+  padding: 5%;
+  margin: 5%;
+  background-color: #FBE6E6
 }
 #flex {
   display: flex;

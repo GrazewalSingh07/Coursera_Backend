@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Edit Profile</title>
+     <link rel="stylesheet" href="editProfile.css">
+</head>
+<body>
+     <div id="jnavbar">
+          <a href="index.html"><img src="./icons/download.svg" alt=""></a>
+          <div id="explore">
+              <button id="explore_button">Explore <span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 12px;" data-rotate="270deg"></span></button>
+              
+              <div id="explore_option">
+                  <div class="faltu_div_on_navbar"></div>
+                  <div class="left_explore_option">
+                      <ul>
+                          <li>Goals</li>
+                          <li>Take a free course</li>
+                          <li><p>Earn a Degree</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span>
+                          
+                          <!-- <div class="right_explore_option">
+                          </div> -->
+                          
+                          
+                          </li>
+                          <li><p>Earn a Certificate</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Advance your career</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li>Find your new career</li>
+                          <li>Train your team</li>
+                      </ul>
+                      <ul>
+                          <li>Subjects</li>
+                          <li><p>Data Science</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Business</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Computer Science</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Information Technology</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Language Learning</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Health</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Personal Development</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Physical Science and Engineering</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Social Sciences</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Arts and Humanities</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                          <li><p>Math and Logic</p><span class="iconify" data-icon="dashicons:arrow-left-alt2" style="font-size: 18px;" data-rotate="180deg"></span></li>
+                      </ul>
+                      <button>Browse all subjects</button>
+                  </div>
+              </div>
+          </div>
+          <input id="input_of_navbar" type="text" placeholder="What do you want to learn?">
+          <button id="search"><span class="iconify" data-icon="eva:search-outline" data-width="20"></span></button>
+          <p><a href="">Online Degrees</a></p>
+          <p><a href="">Find your New Career</a></p>
+          <p><a href="">For Enterprise</a></p>
+          <p><a href="">For Universities</a></p>
+          <p><a id="log_in_text" href="">Log In</a></p>
+          <button id="join_for_free">Join for Free</button>
+      </div>
+
+      <div id="bgcolor">
+          <div class="box">
+               <div class="profile_box">
+                    <p>Edit my profile</p>
+                    <button><a href="">View Profile</a></button>
+               </div>
+               <div class="intro">
+                    <p class="text1">Details About you</p>
+                    <p>Let the Coursera community of other learners and instructors recognize you.</p>
+               </div>
+               <div class="formdiv">
+                    <form action="">
+                         <div class="flex">
+                              <h4>Full Name</h4>
+                              <input type="text" id="name">
+                         </div>
+                         <div class="flex">
+                              <h4>Profile Photo</h4>
+                              <div class="imgupload" >
+                                   <!-- <button type="file" class="btn">Upload Photo</button> -->
+                                   <input type="file" id="file" value="Upload Photo"class="btn"  accept="image/png, image/jpeg" ></input>
+                                   <p>Maximum size of 1MB. JPG, GIF, or PNG.</p>
+ 
+                              </div>
+                         </div>
+                        
+                         <div class="formdiv">
+                              <table>
+                                   
+                                   <tr>
+                                        <td>Location</td>
+                                        <td><input type="text" id="address" class="name"placeholder="Tell us the city"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Gender</td>
+                                        <td><input type="text" id="gender" class="name" placeholder="Tell us about your top skills"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Phone Number</td>
+                                        <td><input type="text" id="phone" class="name"placeholder="Enter number here"></td>
+                                   </tr>
+                                   <tr>
+                                        <td>Details Privacy</td>
+                                        <td><input type="text" class="name"placeholder="Only me"></td>
+                                   </tr>
+                                   
+                              </table>
+                         </div>
+                    </form>
+               </div>
+               <hr class="line">
+            
+             
+               <button class="btn2" id="SaveProfile"><a href="Login.html">Save Profile</a></button>
+          </div>
+      </div>
+</body>
+</html>
+<script>
+     document.getElementById("SaveProfile").addEventListener("click", save)
+     let url=`http://localhost:5000/edit-profile/${JSON.parse(localStorage.getItem("userID"))}`
+     let token= JSON.parse(localStorage.getItem("Course-eraToken"))
+    
+     async function save(event){
+          event.preventDefault()
+          
+          let fullname=document.getElementById("name").value||""
+          let address=document.getElementById("address").value||""
+          let phone=document.getElementById("phone").value||""
+          let gender=document.getElementById("gender").value||""
+          let profilepic= document.getElementById("file").value||""
+          // console.log(profilepic)
+         
+          const result= await fetch(url,{
+            method:"PATCH",
+            headers:{
+                'Content-Type':'application/json',
+                "enctype":"multipart/form-data",
+                Authorization:JSON.parse(localStorage.getItem("Course-eraToken"))
+                
+            },
+            body:
+                JSON.stringify({
+                   fullname,
+                  profilepic,
+                   address,
+                   gender,
+                   phone
+                   
+            }),
+         
+        }).then((res)=>{
+            return res.json()
+        }) 
+        console.log(result)
+         if(result.error){
+              
+         }
+}
+    </script>

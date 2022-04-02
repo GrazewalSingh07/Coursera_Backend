@@ -13,39 +13,42 @@ router.get("/", async(req,res)=>{
         res.status(400).send(error)
     }
 })
-router.patch("/:id",authenticate,single("profilepic"), async(req,res)=>{
+router.patch("/:id",authenticate, async(req,res)=>{
     try {
         
-        console.log(req.body)
-        if(req.file.path){
-            //  var newprofile= req.file.path
-               let finduser=await User.findOne({_id:req.params.id}).lean().exec();
-               finduser.profilepic=null
-              let user= await User.findByIdAndUpdate(
-                req.params.id,
-                 {  
-                     fullname:req.body.fullname,
-                     profilepic:req.file.path,
-                     address:req.body.address,
-                     gender:req.body.gender,
-                    //  birthday:req.body.birthday,
-                     phone:req.body.phone
+        console.log(req.file)
+        // if(req.file.path){
+        //     //  var newprofile= req.file.path
+        //     console.log(req.body)
+        //        let finduser=await User.findOne({_id:req.params.id}).lean().exec();
+        //        console.log(finduser)
+        //        finduser.profilepic=null
+        //       let user= await User.findByIdAndUpdate(
+        //         req.params.id,
+        //          {  
+        //              fullname:req.body.fullname,
+        //              profilepic:req.file.path,
+        //              address:req.body.address,
+        //              gender:req.body.gender,
+        //             //  birthday:req.body.birthday,
+        //              phone:req.body.phone
 
-                 }
-                ,{new:true}).lean().exec()
-                res.status(200).send({message:user})
-             }
+        //          }
+        //         ,{new:true}).lean().exec()
+        //         console.log(user)
+        //         res.status(200).send({message:user})
+            //  }
 
  
-            else{
-                console.log(req.body)
+            // else{
+               
                 const user= await User.findByIdAndUpdate(
                      req.params.id,
                       req.body
                      ,{new:true}).lean().exec()
-                    
+                     console.log(user)
                      return res.status(200).send(user)
-            }
+            // }
            
             
                

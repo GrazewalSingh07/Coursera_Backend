@@ -1,0 +1,95 @@
+*{
+     margin: 0px;    
+    }
+    #body_div{
+         border: 1px solid black;
+         width: 500px;
+         height: 650px;
+         margin: auto;
+         margin-top: 120px;
+    }
+    .cross{
+         /* border:1px solid red; */
+         width: 30px;
+         height: 20px;
+         padding: 10px 0px 0px 465px;
+    }
+    #text > h1{
+         /* border: 1px solid red; */
+         text-align: center;
+         font-size: 35px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 100;
+    }
+    #text > p{
+         /* border: 1px solid green; */
+         text-align: center;
+         padding: 30px 75px;
+         font-size: 17px;
+         color: gray;
+    }
+    #error{
+     height: auto;
+     width: 70%;
+  padding: 5%;
+  margin: -5% 10% 5% ;
+  background-color: #FBE6E6
+}
+    #email_div > h4{
+         /* border: 1px solid black; */
+         font-size: 15px;
+         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+         padding-left: 75px;
+    }
+    .email_ip{
+         border: 1px solid gray;
+         width: 350px ;
+         margin: 15px 0px 0px 75px;
+         height: 40px;
+         padding-left: 15px;
+    }
+    #submit_btn{
+         width: 370px;
+         height: 45px;
+         background-color: #0056d2;
+         margin: 40px 0px 0px 75px;
+         color: white;
+         text-decoration: none;
+         border: 0px;
+         padding: 5px 70px;
+         font-weight: 300;
+         border-radius: 5px;
+         cursor: pointer;
+    }
+    #line_hr{
+         width: 370px;
+         margin: 40px 0px 0px 75px;
+    }
+    .email_div{
+         /* border: 1px solid green; */
+         width: 370px;
+         margin: 40px 0px 0px 75px;
+    }
+    .email_div > button{
+         height: 40px;
+         width: 100%;
+         background-color: white;
+         border: 1px solid #0056d2;
+         text-decoration: none;
+         cursor: pointer;
+         padding: 10px 100px;
+         color: #0056d2;
+         font-weight: 600;
+         font-size: 14px;
+    }
+    #back{
+         /* border: 1px solid red; */
+         width: 370px;
+         margin: 40px 0px 0px 75px;
+         text-align: center;
+         font-size: 16px;
+    }
+    #log_in{
+         text-decoration: none;
+         color: #0056d2;
+    }

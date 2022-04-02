@@ -65,15 +65,7 @@
                     </div>
                   </div>
                </div>
-               <div id="id01" class="w3-modal">
-                    <div class="w3-modal-content">
-                      <div class="w3-container">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                        <p>Some text. Some text. Some text.</p>
-                        <p>Some text. Some text. Some text.</p>
-                      </div>
-                    </div>
-           </div>
+                
 </body>
 </html>
 
@@ -106,10 +98,15 @@
 //             alert("Your Email or Password is Invalid");
 //         }
 //     }
-let url=`http://localhost:4000/login`
+let url=`http://localhost:5000/login`
 
 async function signIn(event){
     event.preventDefault();
+    let diverror= document.getElementById("error")
+        if(diverror){
+          diverror= document.getElementById("error").remove()
+          document.getElementById("block").style.height= "800px"
+        }
     try {
      const email=document.getElementById("email").value
    const password= document.getElementById("password").value
@@ -127,11 +124,45 @@ async function signIn(event){
        return res.json()
    })
 //    console.log(result)
-   if(result.error){
-     console.log(result.error)
- }
+//    if(result.error){
+//      console.log(result.error)
+//  }
+ if(result.error){
+          console.log({res:result.error})
+        
+        var error=  document.createElement("div") 
+        error.setAttribute("id","error")
+        document.getElementById("block").style.height= "900px"
+        var p=document.createElement("p")
+        console.log(result.error[0].param)
+         for(let i=0;i<result.error.length;i++){
+           
+               if(result.error[i].param=="email"){
+                    p.textContent=("Invalid email. Please enter email as name@email.com")
+                   
+               }
+               if(result.error[i].param=="password"){
+                    p.textContent=("Password must contain between 8 and 72 characters.")
+                    break;
+               }
+         }
+         if(result.error.length>1){
+          p.textContent=("Full name is required.Invalid email. Please enter email as name@email.com. Password must contain between 8 and 72 characters.")
+         }
+       
+        
+        error.append(p)
+        document.getElementById("text").append(error)
+        
+        
+          
+      }
+     //  else{
+     //      window.location.href="login.html"
+     //  }
+     
  else{
-   localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
+   localStorage.setItem("Course-eraToken",JSON.stringify(`Bearer ${result.token}`))
    localStorage.setItem("CurrentUser",JSON.stringify(result.user))
    window.location.href="index.html"
       
