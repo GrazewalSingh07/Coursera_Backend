@@ -8,9 +8,11 @@
      <link rel="icon" href="./components/icons/image.png">
      <link rel="stylesheet" href="./style/signUp.css">
 </head>
-<body>
-     <div id="main_div">
-          <div id="block">
+
+<body  >
+     <div id="main_div" >
+          <div id="block" >
+
                <div id="flex">
                     <div id="text">
                          <h1>Sign Up</h1>
@@ -24,25 +26,32 @@
                     </div>
                </div>
                <div class="form_div">
+
                     <form>
                          <div class="broder">
 
                               <h4> <strong>FULL NAME</strong></h4>
-                              <input type="text" id="name" class="control" placeholder="Enter your full name">
+
+                              <input type="text" id="name" class="control" placeholder="Enter your full name" onclick="setbordercolor()">
+
 
                          </div>
 
                          <div class="broder">
 
                               <h4> <strong>EMAIL</strong> </h4>
-                              <input type="email" id="email" class="control" placeholder="name@gmail.com">
+
+                              <input type="email" id="email" class="control" placeholder="name@gmail.com" onclick="setbordercolor()">
+
 
                          </div>
 
                          <div class="broder">
 
-                              <h5> <strong>Password</strong> </h5>
-                              <input type="password" id="password" class="control" placeholder="Create Password">
+
+                              <h5> <strong>PASSWORD</strong> </h5>
+                              <input type="password" id="password" class="control" placeholder="Create Password" onclick="setbordercolor()">
+
                               <p>Between 8 and 72 characters</p>
                               <br>
                               
@@ -51,12 +60,16 @@
                     </form>
                     
                     <div class="img">
-                        <img class="google_img" src="./components/icons/download.jfif" alt="">
-                         <p class="google_text"><strong>Continue with Google</strong></p>
+
+                        <!-- <img class="google_img" src="./components/icons/download.jfif" alt="">
+                         <p class="google_text"><strong>Continue with Google</strong></p> -->
+                         <button id="google_ouath"> <p> <img class="google_img" src="./components/icons/download.jfif" alt="" > <span class="google_text">Continue with Google</span> </p></button>
                       </div>
                       <div class="img">
-                        <img class="google_img" src="./components/icons/facebook.jpg" alt="">
-                         <p class="google_text"><strong>Continue with Facebook</strong></p>
+                         <button id="facebookoauth"> <p> <img class="google_img" src="./components/icons/facebook.jpg" alt="" > <span class="google_text">Continue with Facebook</span> </p></button>
+                        <!-- <img class="google_img" src="./components/icons/facebook.jpg" alt="">
+                         <p class="google_text"><strong>Continue with Facebook</strong></p> -->
+
                       </div>
                       <div class="flex">
                            <p>Already on Coursera?</p>
@@ -75,83 +88,132 @@
 </body>
 </html>
 
-<script>
+
+<script> 
+//--------------------------------google ouath code start here-------------------------------------------------
+   let google_ouath = document.getElementById("google_ouath").addEventListener("click" , google_auth);
+
+   let google_url =  `http://localhost:5000/auth/google/callback`;
+
+   async function google_auth(event){
+     event.preventDefault()
+     try {
+      let res= await fetch(google_url)
+      console.log(res.url)
+      window.location.href=res.url;
+     } catch (error) {
+          console.log(error)
+     }
+}
+//--------------------------------google ouath code ends here-------------------------------------------------
 
 
-document.querySelector(".join_btn").addEventListener("click",signUp);
-var userData = JSON.parse(localStorage.getItem("database")) || [];
-function signUp(event){
-    event.preventDefault();
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var password = document.querySelector("#password").value;
+// facebook
 
-    
+async function facebookOauth(event){
+event.preventDefault()
+try {
+ let res= await fetch(facebookurl)
+ window.location.href=res.url
 
-    var userDetails = {
-        userName: name,
-        userEmail: email,
-        userPassword: password,
-    };
-    userData.push(userDetails);
-    console.log(userData);
 
-    localStorage.setItem("database",JSON.stringify(userData));
-    alert("Sign Up Successfully")
-    window.location.href = "Login.html"
+ console.log(data)
+} catch (error) {
+     console.log(error)
+}
+}
+///facebook end
+
+//---------------------------------------sign up and login code --------------------------------------
+
+function setbordercolor(){
+     
+     document.getElementById("name").style.border= "1px solid blue"
 }
 
+function removebordercolor(){
+document.querySelector(":not(input)").style.border="1px solid gray"     
+}
+document.querySelector(".join_btn").addEventListener("click",signUp);
+document.querySelector("#facebookoauth").addEventListener("click",facebookOauth);
+let SignUpurl=`http://localhost:5000/register`;
+let facebookurl=`http://localhost:5000/auth/facebook/callback`;
+
+async function signUp(event){
+   event.preventDefault()
+//    console.log("hi")
+   let diverror= document.getElementById("error")
+   if(diverror){
+     diverror= document.getElementById("error").remove()
+   }
+ 
+   try {
+   const username=document.getElementById("name").value
+   const email=document.getElementById("email").value
+   const password=document.getElementById("password").value
+  
+ console.log(username,email,password)
+  const result= await fetch(SignUpurl,{
+       method:"POST",
+       headers:{
+           'Content-Type':'application/json',
+           
+       },
+       body:
+           JSON.stringify({
+               username,
+               email,
+               password
+       })
+   }).then((res)=>{
+       return res.json()
+   })
+   console.log(result)
+  
+ if(result.error){
+     console.log({res:result.error})
+   
+   var error=  document.createElement("div") 
+   error.setAttribute("id","error")
+   var p=document.createElement("p")
+  
+    
+   console.log(result.error[0].param)
+    for(let i=0;i<result.error.length;i++){
+     if(result.error[i].param=="username"){
+               p.textContent=("Please enter username")
+              
+          }
+          if(result.error[i].param=="email"){
+               p.textContent=("Invalid email. Please enter email as name@email.com")
+              
+          }
+          if(result.error[i].param=="password"){
+               p.textContent=("Password must contain between 8 and 72 characters.")
+               break;
+          }
+    }
+    if(result.error.length>2){
+     p.textContent=("Full name is required.Invalid email. Please enter email as name@email.com. Password must contain between 8 and 72 characters.")
+    }
+  
+   
+   error.append(p)
+   document.getElementById("text").append(error)
+   
+   
+     
+ }
+ else{
+     window.location.href="login.html"
+ }
+   } catch (error) {
+        console.log({error:error})
+   }
+  
+}
+
+//---------------------------------till here --------------------------------------------------------
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-    <script type="module">
-        import navbar from "./components/navbar.js";
-        document.querySelector("#navbar_parent").innerHTML = navbar();
-        import {footer,Minifooter} from "./components/footer.js";
-        document.querySelector("#footer_parent").innerHTML = footer();
-
-        let hide_me = document.querySelector("#user_div_data");
-        hide_me.style.display = "none";
-
-        let hide_me_also = document.querySelector("#bell_icon");
-        hide_me_also.style.display = "none";
-        
-
-
-        document.querySelector(".join_btn").addEventListener("click",signUp);
-    var userData = JSON.parse(localStorage.getItem("database")) || [];
-    function signUp(event){
-    event.preventDefault();
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var password = document.querySelector("#password").value;
-    var userDetails = {
-        userName: name,
-        userEmail: email,
-        userPassword: password,
-    };
-    userData.push(userDetails);
-    console.log(userData);
-
-    localStorage.setItem("database",JSON.stringify(userData));
-
-    window.location.href="./login.html"
-    // alert("Sign Up Successfully")
-}
-
-    </script> -->
