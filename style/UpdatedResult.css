@@ -266,44 +266,47 @@ input.filter-checkbox {
   font-size: 16px;
   font-weight: 400;
 }
+
+
+
 #nextPage {
   color: rgb(58, 69, 112);
   background-color: #f5f5f5;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 21px;
-  font-weight: 400;
-  margin: 48px 100px 48px auto;
-  width: 74%;
-  position: absolute;
-  right: 0;
-  height: 50px;
-
+  font-weight: bold;
+  margin: auto;
+  width: 100%;
   justify-content: center;
   text-align: center;
 }
+
+.Button_Bottom2,
 .Button_Bottom1 {
   margin-top: 2px;
-  font-size: 16px;
-  color: white;
-  background-color: rgba(128, 128, 128, 0.712);
-  border: 0;
-  font-weight: 400px;
-  padding: 11px;
-}
-.Button_Bottom2 {
-  margin-top: 2px;
   border: 0;
   font-size: 16px;
+  line-height: 21px;
+  font-weight: bold;
   color: white;
+  padding: 10px 20px;
   background-color: blue;
-  font-weight: 400px;
-  padding: 11px;
+  cursor: pointer;
 }
+
+.Button_Bottom2.disabled,
+.Button_Bottom1.disabled {
+  background-color: white;
+  color: gray;
+  pointer-events: none;
+}
+
 .btn1 {
   background-color: transparent;
   border: none;
   font-size: 16px;
   color: blue;
+  padding: 10px 20px;
   border-bottom: 1px solid blue;
 }
 .btn1:hover {
