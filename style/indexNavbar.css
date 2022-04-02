@@ -39,10 +39,12 @@
     color: rgb(42, 115, 204);
     text-decoration: underline;
 }
+
 #s_tag{
     width: 20px;
     margin-right: 20px;
 }
+
 #explore_button{
     background-color:rgb(1, 86, 184) ;
     width: 100px;
@@ -71,6 +73,7 @@
     margin: auto 0 auto -50px;
     padding: 0 20px;
 }
+
 /* ------------explore button --------- */
 
 #explore_option{
