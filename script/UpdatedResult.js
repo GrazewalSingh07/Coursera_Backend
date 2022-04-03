@@ -59,7 +59,7 @@ if (token) {
 let input_term = JSON.parse(localStorage.getItem("query"));
 let counting;
 
-let url = `http://localhost:5000/courses?name=${input_term}`;
+let url = `https://coursera-backend-nodejs.herokuapp.com/courses?name=${input_term}`;
 
 const search_data = async (url) => {
   try {
@@ -84,7 +84,7 @@ for (let checkbox of filter_checkbox) {
     if (this.checked == true) {
       // console.log("checked");
 
-      var url = `http://localhost:5000/courses/duration?name=${input_term}&duration=${this.value}`;
+      var url = `https://coursera-backend-nodejs.herokuapp.com/courses/duration?name=${input_term}&duration=${this.value}`;
 
       FetchApi(url);
     } else {
@@ -162,14 +162,14 @@ let btn1 = document.querySelector(".btn1");
 let previouspage, nextpage;
 
 Button_Bottom1.addEventListener("click", () => {
-  let url = `http://localhost:5000/courses?name=${input_term}&page=${previouspage}`;
+  let url = `https://coursera-backend-nodejs.herokuapp.com/courses?name=${input_term}&page=${previouspage}`;
   console.log("url:", url);
 
   search_data(url);
 });
 
 Button_Bottom2.addEventListener("click", () => {
-  let url = `http://localhost:5000/courses?name=${input_term}&page=${nextpage}`;
+  let url = `https://coursera-backend-nodejs.herokuapp.com/courses?name=${input_term}&page=${nextpage}`;
   console.log("url:", url);
   search_data(url);
 });

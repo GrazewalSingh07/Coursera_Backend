@@ -93,7 +93,7 @@
 //--------------------------------google ouath code start here-------------------------------------------------
    let google_ouath = document.getElementById("google_ouath").addEventListener("click" , google_auth);
 
-   let google_url =  `http://localhost:5000/auth/google/callback`;
+   let google_url =  `https://coursera-backend-nodejs.herokuapp.com/auth/google/callback`;
 
    async function google_auth(event){
      event.preventDefault()
@@ -136,8 +136,10 @@ document.querySelector(":not(input)").style.border="1px solid gray"
 }
 document.querySelector(".join_btn").addEventListener("click",signUp);
 document.querySelector("#facebookoauth").addEventListener("click",facebookOauth);
-let SignUpurl=`http://localhost:5000/register`;
-let facebookurl=`http://localhost:5000/auth/facebook/callback`;
+let SignUpurl=`https://coursera-backend-nodejs.herokuapp.com/register`;
+let facebookurl=`https://coursera-backend-nodejs.herokuapp.com/auth/facebook/callback`;
+
+     
 
 async function signUp(event){
    event.preventDefault()

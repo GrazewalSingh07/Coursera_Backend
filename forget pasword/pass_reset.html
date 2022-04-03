@@ -47,7 +47,7 @@
     
      async  function savePassword(event){
      event.preventDefault()
-     let url=`http://localhost:5000/reset-password/${JSON.parse(localStorage.getItem("userID"))}`
+     let url=`https://coursera-backend-nodejs.herokuapp.com/reset-password/${JSON.parse(localStorage.getItem("userID"))}`
       console.log(url)
       let diverror= document.getElementById("error")
         if(diverror){
@@ -99,9 +99,13 @@ else if(firstpassword==password &&firstpassword!=""&&password!=""){
         document.getElementById("text").append(error)
       }
       else{
-          localStorage.setItem("Course-eraToken",JSON.stringify(result.token))
-           localStorage.setItem("CurrentUser",JSON.stringify(result.user))
-           window.location.href="index.html"
+
+          alert("Password reset sucessfull, please login");
+             localStorage.setItem("Course-eraToken", JSON.stringify(result.token))
+             localStorage.setItem("CurrentUser", JSON.stringify(result.user))
+             window.location.href = "https://coursera-backend-nodejs.herokuapp.com/login.html"
+
+
       }    
         } catch (error) {
              console.log(error)

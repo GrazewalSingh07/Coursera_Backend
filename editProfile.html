@@ -119,7 +119,7 @@
 </html>
 <script>
      document.getElementById("SaveProfile").addEventListener("click", save)
-     let url=`http://localhost:5000/edit-profile/${JSON.parse(localStorage.getItem("userID"))}`
+     let url=`https://coursera-backend-nodejs.herokuapp.com/edit-profile/${JSON.parse(localStorage.getItem("userID"))}`
      let token= JSON.parse(localStorage.getItem("Course-eraToken"))
     
      async function save(event){

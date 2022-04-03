@@ -632,7 +632,7 @@
     const search_data = async () => {
         try {
             input_term = input_of_navbar.value;
-            let res = await fetch(`http://localhost:5000/courses?name=${input_term}`);
+            let res = await fetch(`https://coursera-backend-nodejs.herokuapp.com/courses?name=${input_term}`);
             let data = await res.json();
 
             console.log(data);
