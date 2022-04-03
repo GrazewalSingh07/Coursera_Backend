@@ -43,7 +43,8 @@
       document.querySelector("#submit_btn").addEventListener("click",savePassword);
       JSON.parse(localStorage.getItem("userID"))
      //  console.log( JSON.parse(localStorage.getItem("userID")))
-    
+
+       
     
      async  function savePassword(event){
      event.preventDefault()
@@ -103,7 +104,7 @@ else if(firstpassword==password &&firstpassword!=""&&password!=""){
           alert("Password reset sucessfull, please login");
              localStorage.setItem("Course-eraToken", JSON.stringify(result.token))
              localStorage.setItem("CurrentUser", JSON.stringify(result.user))
-             window.location.href = "../login.html"
+             window.location.href = "https://clonecoursera.netlify.app"
 
 
       }    
