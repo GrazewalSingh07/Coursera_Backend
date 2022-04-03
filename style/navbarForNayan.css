@@ -736,3 +736,8 @@ li .iconify{
         display: none;
     }
 }
+
+#s_tag {
+    width: 20px;
+    margin-right: 20px;
+}

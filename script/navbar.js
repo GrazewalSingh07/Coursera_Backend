@@ -393,3 +393,5 @@ let cross_button14 = document.querySelector(".cross_button14");
 cross_button14.addEventListener("click",()=>{
     window.location.reload();
 })
+
+
