@@ -4,4 +4,6 @@
 - Netlify: https://clonecoursera.netlify.app/
 - Heroku Link: https://coursera-backend-nodejs.herokuapp.com/courses?name
 
-It's just the name Backend, It has all the file of fill stack website
+At Masai School, we got the project. We had created the front end in unit 3 and this time we had to create backend for the same.
+It's just the name Backend, It has all the file of full stack website
+.
